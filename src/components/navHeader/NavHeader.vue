@@ -9,11 +9,16 @@
 import { defineComponent,ref} from 'vue';
     export default defineComponent({
         name:'navHeader',
-        setup(){
+        setup(props,ctx){
             let value = ref('')
+
             let enter = () =>{
-                console.log(value.value)
+                // 把输入框的值传递给父组件
+                ctx.emit('add',value.value)
+                //传递之后清空输入框
+                value.value = ''
             }
+
             return{
                 value,
                 enter
